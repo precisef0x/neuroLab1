@@ -71,8 +71,9 @@ namespace neuroLab1_1
 
 			public int discreteValue()
 			{
-				if (activatedValue() >= 0.5) return 1;
-				return 0;
+				//if (activatedValue() >= 0.5) return 1;
+				//return 0;
+				return Convert.ToInt32(activatedValue()); //step
 			}
 			//OUTPUTS END
 
