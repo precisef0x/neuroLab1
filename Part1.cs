@@ -6,18 +6,11 @@ namespace neuroLab1_1
 {
 	class MainClass
 	{
-		public static string binaryStringFromInt32(int input)
-		{
-			return Convert.ToString(input, 2).PadLeft(4, '0');
-		}
-
 		public class Net
 		{
 			public double[] weights;
 			public int[] inputs;
-			public double epochErrors;
 			public double rate = 0.3;
-			public bool on = true;
 
 			public int targetFunction(int x1, int x2, int x3, int x4)
 			{
@@ -102,9 +95,8 @@ namespace neuroLab1_1
 			public void learn()
 			{
 				double error = Convert.ToDouble(targetValue() - discreteValue());
-				epochErrors += Math.Abs(error);
 				for (int i = 0; i < 5; i++) //update weights
-					weights[i] = weights[i] + (rate) * (error) * Convert.ToDouble(inputs[i]);
+					weights[i] = weights[i] + rate * error * Convert.ToDouble(inputs[i]);
 			}
 		}
 
@@ -119,7 +111,6 @@ namespace neuroLab1_1
 
 				if (currentTotalErrors == 0) break;
 
-				net.epochErrors = 0;
 				for (int i = 0; i < 16; i++)
 				{
 					net.setInputs(i);
